@@ -38,6 +38,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",
     inline: "echo assumeyes=1 >> /etc/yum.conf"  
 end 
+
+
+
 Vagrant.configure("2") do |config|
   config.vm.provision "shell",
     inline: "yum update && yum -y upgrade  && yum install -y yum-utils git ansible device-mapper-persistent-data lvm2 && 
@@ -46,6 +49,15 @@ yum-config-manager --disable docker-ce-nightly &&
 yum -y install docker-ce docker-ce-cli containerd.io "
 
 end
+
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell",
+    inline: "git config --global user.email hofstaetter@casolution.de &&
+git config --global user.name spqr2001 "
+#https://github.com/spqr2001/unix.git && cd unix && 
+#git remote set-url origin git@github.com:spqr2001/unix.git"
+end
+
 
 
 Vagrant.configure("2") do |config|

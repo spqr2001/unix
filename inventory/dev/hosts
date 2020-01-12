@@ -1,0 +1,6 @@
+[manager]
+centos-01 
+
+[worker] 
+centos-02
+centos-03
