@@ -1,2 +1,22 @@
 ---
-# tasks file for punisher
+- name: gtfo
+  shell: docker stop $(docker ps -a -q)
+  ignore_errors: true
+
+- name: gtfo2
+  shell:  docker rm -f $(docker ps -a -q)
+  ignore_errors: true
+
+- name: gtfo3
+  shell:   docker rmi $(docker images -a -q)
+  ignore_errors: true
+
+- name: remove custom dirs
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ wildfly_dir }}"
+
+
+
