@@ -23,10 +23,11 @@ syncserver_fqdn: syncserver.ruv.de
 wildfly_dir: /etc/wildfly
 wildfly_conf: /etc/wildfly/conf
 wildfly_certs: /etc/wildfly/certs
+wildfly_war: /etc/wildfly/war
 wildfly_cli: /etc/wildfly/cli
 wildfly_vg: wildfly_vg
 wildfly_lv: wildfly_lv
-wildfly_device: /dev/mapper/wildflyo_lv
+wildfly_device: /dev/mapper/wildfly_lv
 wildfly_db_host: postgres04.dev.cloud.ruv.de
 wildfly_db_port: '6432'
 wildfly_db: d_wildfly
@@ -36,6 +37,6 @@ wildfly_user: admin
 wildfly_pass: E13itbv++
 wildfly_version: v0.2
 wildfly_container_name: wildflyruv
-wildfly_container_version: 7.0.1
-wildfly_container_location: artifacts.ruv.de/jboss/wildfly
+wildfly_container_version: latest 
+wildfly_container_location: jboss/wildfly
 

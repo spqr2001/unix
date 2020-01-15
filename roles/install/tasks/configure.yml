@@ -17,10 +17,10 @@
     csr_path: /etc/wildfly/certs/tls.csr
     provider: selfsigned
 
-- name: copy cli files
+- name: copy war files
   copy:
-    src: cli/
-    dest: "{{ wildfly_cli }}"
+    src: hello-world.war
+    dest: "{{ wildfly_war }}"
     mode: 0644
     owner: root
     directory_mode: yes

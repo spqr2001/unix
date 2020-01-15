@@ -25,14 +25,7 @@
     - "{{ wildfly_dir }}"
     - "{{ wildfly_conf }}"
     - "{{ wildfly_certs }}"
+    - "{{ wildfly_war }}"
   when:
     - inventory_hostname in groups['workers']
-
-- name: send hostname with dhcp requests
-  lineinfile:
-    path: "/etc/dhcp/dhclient-{{ ansible_facts.default_ipv4.interface }}.conf"
-    line: 'send host-name "{{ nginx_domain }}";'
-    create: yes
-    owner: root
-    group: root
 
