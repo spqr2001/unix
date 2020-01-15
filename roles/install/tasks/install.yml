@@ -2,7 +2,7 @@
 - name: template Dockerfile
   template:
     src: "{{ item }}"
-    dest: "{{ keyclo_dir }}"
+    dest: "{{ wildfly_dir }}"
     owner: root
     group: root
     mode: 0755
@@ -10,19 +10,19 @@
     - Dockerfile
     - docker-entrypoint.sh
 
-- name: build keycloak container
+- name: build wildfly container
   docker_image:
     build:
-      path: "{{ keyclo_dir }}"
-    tag: "{{ keyclo_version }}"
+      path: "{{ wildfly_dir }}"
+    tag: "{{ wildfly_version }}"
     pull: true
     source: build
-    name: "{{ keyclo_container_name }}"
+    name: "{{ wildfly_container_name }}"
 
-- name: running keycload container
+- name: running wildfly container
   docker_container:
-    name: "{{ keyclo_container_name }}"
-    image: "{{ keyclo_container_name }}:{{ keyclo_version }}"
+    name: "{{ wildfly_container_name }}"
+    image: "{{ wildfly_container_name }}:{{ wildfly_version }}"
     state: started
     hostname: "{{ ansible_ssh_host }}"
     log_driver: journald
@@ -36,19 +36,19 @@
       - 45700:45700
       - 57600:57600
     env:
-      #DB_PORT: "{{ keyclo_db_port }}"
+      #DB_PORT: "{{ wildfly_db_port }}"
       #DB_VENDOR: postgres
-      DB_ADDR: "{{ keyclo_db_host }}"
-      DB_DATABASE: "{{ keyclo_db }}"
-      DB_USER: "{{ keyclo_db_user }}"
+      DB_ADDR: "{{ wildfly_db_host }}"
+      DB_DATABASE: "{{ wildfly_db }}"
+      DB_USER: "{{ wildfly_db_user }}"
       #DB_SCHEMA: public
-      DB_PASSWORD: "{{ keyclo_db_pass }}"
-      KEYCLOAK_USER: "{{ keyclo_user }}"
-      KEYCLOAK_PASSWORD: "{{ keyclo_pass }}"
+      DB_PASSWORD: "{{ wildfly_db_pass }}"
+      KEYCLOAK_USER: "{{ wildfly_user }}"
+      KEYCLOAK_PASSWORD: "{{ wildfly_pass }}"
       PROXY_ADDRESS_FORWARDING: "true"
       HOST_ADDR: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
       JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
       JGROUPS_DISCOVERY_EXTERNAL_IP: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
     volumes:
-      - /etc/keycloak/certs:/etc/x509/https
+      - /etc/wildfly/certs:/etc/x509/https
 

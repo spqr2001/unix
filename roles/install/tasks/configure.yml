@@ -1,26 +1,26 @@
 ---
 - name: Generate a Private Key
   openssl_privatekey:
-    path: /etc/keycloak/certs/tls.key
+    path: /etc/wildfly/certs/tls.key
 
 - name: Generate CSR
   openssl_csr:
-    path: /etc/keycloak/certs/tls.csr
-    privatekey_path: /etc/keycloak/certs/tls.key
+    path: /etc/wildfly/certs/tls.csr
+    privatekey_path: /etc/wildfly/certs/tls.key
     digest: sha512
     common_name: "{{ inventory_hostname }}"
 
 - name: Generate a Self Signed OpenSSL certificate
   openssl_certificate:
-    path: /etc/keycloak/certs/tls.crt
-    privatekey_path: /etc/keycloak/certs/tls.key
-    csr_path: /etc/keycloak/certs/tls.csr
+    path: /etc/wildfly/certs/tls.crt
+    privatekey_path: /etc/wildfly/certs/tls.key
+    csr_path: /etc/wildfly/certs/tls.csr
     provider: selfsigned
 
 - name: copy cli files
   copy:
     src: cli/
-    dest: "{{ keyclo_cli }}"
+    dest: "{{ wildfly_cli }}"
     mode: 0644
     owner: root
     directory_mode: yes
@@ -28,7 +28,7 @@
 - name: copy conf files
   copy:
     src: conf/
-    dest: "{{ keyclo_conf }}"
+    dest: "{{ wildfly_conf }}"
     mode: 0644
     owner: root
     directory_mode: yes
@@ -36,7 +36,7 @@
 - name: copy docker files
   copy:
     src: "{{ item }}"
-    dest: "{{ keyclo_dir }}"
+    dest: "{{ wildfly_dir }}"
     owner: root
     group: root
     mode: 0755
