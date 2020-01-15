@@ -58,6 +58,13 @@ git config --global user.name spqr2001 "
 #git remote set-url origin git@github.com:spqr2001/unix.git"
 end
 
+Vagrant.configure("2") do |config|
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/install.yml"
+  end
+end
+
+
 
 
 Vagrant.configure("2") do |config|

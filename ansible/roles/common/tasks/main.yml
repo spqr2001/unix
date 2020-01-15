@@ -2,8 +2,8 @@
 - name: update systems  
   import_tasks: update.yml
 
-- name: add users 
-  import_tasks: users.yml 
+  #- name: add users 
+  #import_tasks: users.yml 
 
 - name: common system tasks / preperation 
   import_tasks: common.yml 
