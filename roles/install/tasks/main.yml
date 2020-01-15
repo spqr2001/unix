@@ -5,14 +5,9 @@
     - install
 
 - name: WildFly | Configure
-  include: config.yml
+  include: configure.yml
   tags:
     - configure
-
-- name: WildFly | Users
-  include: users.yml
-  tags:
-    - users
 
 - name: WildFly | Service
   include: service.yml

@@ -1,0 +1,31 @@
+version: '3.5'
+  services:
+
+   wildfly1:
+     build:
+       context: .
+       args:
+         WILDFLY_NAME: {{ wildfly_instance_1 }} 
+         CLUSTER_PW: {{ wildfly_cluster_pass }}  
+     image: {{ wildfly_image }}  
+     ports:
+     - 8080:8080
+     networks:
+       wildfly_network:
+
+   wildfly2:
+     build:
+       context: .
+       args:
+         WILDFLY_NAME: {{ wildfly_instance_1 }}
+
+     image: {{ wildfly_image }} 
+     ports:
+     - 8081:8080
+     networks:
+       wildfly_network:
+
+  networks:
+   wildfly_network:
+     ipam:
+       driver: default
