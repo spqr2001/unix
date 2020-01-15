@@ -1,2 +1,3 @@
 ---
-# tasks file for common
+- name: common base role
+  import_tasks: update.yml

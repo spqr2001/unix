@@ -1,0 +1,38 @@
+- name: Install dependencies
+  yum:
+    name: "{{ basepackages }}"
+    state: "{{ state }}"
+
+- sysctl:
+    name: vm.max_map_count
+    value: "262144"
+    sysctl_set: yes
+    state: "{{ state }}"
+
+- sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    sysctl_set: yes
+    state: "{{ state }}"
+
+- name: create wildfly dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    mode: 0755
+  with_items:
+    - "{{ wildfly_dir }}"
+    - "{{ wildfly_conf }}"
+    - "{{ wildfly_certs }}"
+  when:
+    - inventory_hostname in groups['workers']
+
+- name: send hostname with dhcp requests
+  lineinfile:
+    path: "/etc/dhcp/dhclient-{{ ansible_facts.default_ipv4.interface }}.conf"
+    line: 'send host-name "{{ nginx_domain }}";'
+    create: yes
+    owner: root
+    group: root
+
