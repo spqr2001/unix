@@ -31,6 +31,8 @@ wildfly_conf: /etc/wildfly/conf
 wildfly_certs: /etc/wildfly/certs
 wildfly_war: /etc/wildfly/war
 wildfly_cli: /etc/wildfly/cli
+wildfly_name: wildfly 
+wildfly_cluster_pw: E13itbv++
 wildfly_vg: wildfly_vg
 wildfly_lv: wildfly_lv
 wildfly_device: /dev/mapper/wildfly_lv
