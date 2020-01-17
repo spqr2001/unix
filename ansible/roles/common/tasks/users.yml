@@ -41,11 +41,7 @@
     createhome: yes
     comment: "{{ item.0.comment if item.0.comment is defined else '' }}"
     state: present #hard-coded in case user sets state of absent. Choice made to never delete accounts!
-#    expires: -1 #unlock account if locked ###Doesn't work like chage..
-#    command: chage -E -1 {{ item.0.username }} #unlock password authentication
-#  register: user_results
   when: (item.0.user_state == 'present' or item.0.user_state == 'lock') and item.1 in group_names
-#works but not multiple servers #and 'centos6' in "{{ group_names }}"
   with_subelements:
     - "{{ users }}"
     - servers
