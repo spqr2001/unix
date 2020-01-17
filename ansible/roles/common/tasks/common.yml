@@ -26,6 +26,4 @@
     - "{{ wildfly_conf }}"
     - "{{ wildfly_certs }}"
     - "{{ wildfly_war }}"
-      #  when:
-      #- inventory_hostname in groups['workers']
 

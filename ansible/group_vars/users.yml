@@ -14,7 +14,6 @@ users:
     user_state: present
     servers:
       - worker
-      - manager
 
   - username: testuser102
     password: $6$F/KXFzMa$ZIDqtYtM6sOC3UmRntVsTcy1rnsvw.6tBquOhX7Sb26jxskXpve8l6DYsQyI1FT8N5I5cL0YkzW7bLbSCMtUw1
