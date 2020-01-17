@@ -60,7 +60,7 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ansible/install.yml"
+    ansible.playbook = "ansible/vagrant.yml"
   end
 end
 
