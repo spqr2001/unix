@@ -46,7 +46,8 @@ Vagrant.configure("2") do |config|
     inline: "yum update && yum -y upgrade  && yum install -y yum-utils git ansible device-mapper-persistent-data lvm2 && 
 yum-config-manager  --add-repo  https://download.docker.com/linux/centos/docker-ce.repo && 
 yum-config-manager --disable docker-ce-nightly && 
-yum -y install docker-ce docker-ce-cli containerd.io "
+yum -y install docker-ce docker-ce-cli containerd.io && 
+systemctl enable docker && systemctl start docker"
 
 end
 

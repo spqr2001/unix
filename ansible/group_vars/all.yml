@@ -22,6 +22,14 @@ debug_enabled_default: true
 default_update_password: always 
 default_shell: /bin/bash
 
+groups_as_list:
+  - web 
+  - db
+  - test 
+  - testgruppe
+  - testcommon
+  - testgroup102db
+
 
 ###########
 # WILDFLY #

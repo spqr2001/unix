@@ -30,20 +30,13 @@
     restart_policy: unless-stopped
     ports:
       - 8080:8080
+      - 9990:9990
     env:
-      #DB_PORT: "{{ wildfly_db_port }}"
-      #DB_VENDOR: postgres
-      DB_ADDR: "{{ wildfly_db_host }}"
-      DB_DATABASE: "{{ wildfly_db }}"
-      DB_USER: "{{ wildfly_db_user }}"
-      #DB_SCHEMA: public
-      DB_PASSWORD: "{{ wildfly_db_pass }}"
-      KEYCLOAK_USER: "{{ wildfly_user }}"
-      KEYCLOAK_PASSWORD: "{{ wildfly_pass }}"
       PROXY_ADDRESS_FORWARDING: "true"
       HOST_ADDR: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
-      JGROUPS_DISCOVERY_EXTERNAL_IP: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    args: 
+      WILDFLY_NAME: "{{ wildfly_name }}" 
+      CLUSTER_PW: "{{ wildfly_cluster_pw }}" 
     volumes:
       - /etc/wildfly/certs:/etc/x509/https
 
