@@ -2,8 +2,8 @@
 - hosts: all
   become: true
   roles:
-          #    - common 
-    - install
+    - common 
+      #    - install
   vars: 
     state: present 
     mode: restarted
