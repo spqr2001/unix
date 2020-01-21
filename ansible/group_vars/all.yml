@@ -14,8 +14,6 @@ update_packages:
   - tmux
   - bash-completion
   - mc
-  - docker 
-  - 
 
 docker_user: root
 docker_dir: /opt/docker
