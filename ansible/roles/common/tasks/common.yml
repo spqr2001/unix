@@ -4,15 +4,11 @@
     name: "{{ update_packages }}"
     state: present
 
-- name: install the package, force upgrade
-  pip:
-    name: pip
-    executable: pip
-    state: latest
-  ignore_errors: true
 
-- pip:
+- name: install pip ssl dependencies 
+  pip:
     name: pyopenssl
+  ignore_errors: true
 
 - sysctl:
     name: vm.max_map_count
