@@ -40,7 +40,7 @@ groups_as_list:
 # WILDFLY #
 ###########
 wildfly_dir: /etc/wildfly
-wildfly_dockerfile: ./etc/wildfly/Dockerfile
+wildfly_dockerfile: /etc/wildfly/Dockerfile
 wildfly_conf: /etc/wildfly/conf
 wildfly_certs: /etc/wildfly/certs
 wildfly_war: /etc/wildfly/war

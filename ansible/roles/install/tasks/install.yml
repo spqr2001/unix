@@ -15,9 +15,9 @@
     build:
       path: "{{ wildfly_dockerfile }}"
     tag: "{{ wildfly_version }}"
-    pull: true
+    #pull: true
     source: build
-    name: "{{ wildfly_container_location }}"
+    name: "{{ wildfly_container_name }}"
 
 
 - name: running wildfly container
