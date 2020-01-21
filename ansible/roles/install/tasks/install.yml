@@ -7,8 +7,8 @@
     group: root
     mode: 0755
   with_items:
-    - Dockerfile.j2
-    - docker-entrypoint.sh.j2
+    - Dockerfile
+    - docker-entrypoint.sh
 
 - name: build wildfly container
   docker_image:
