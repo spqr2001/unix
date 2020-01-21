@@ -1,24 +1,15 @@
 ---
-- name: update the system
+- name: Ensure packages exists
   yum:
-    name: "*"
+    name: "{{ update_packages }}"
+    state: present
+
+- name: Update to latest
+  when: update.enabled|bool
+  yum:
+    name: '*'
     state: latest
-
-- name: restart system to reboot to newest kernel
-  shell: "sleep 5 && reboot"
-  async: 1
-  poll: 0
-
-- name: wait for 10 seconds
-  pause:
-    seconds: 10
-
-- name: wait for the system to reboot
-  wait_for_connection:
-    connect_timeout: 20
-    sleep: 5
-    delay: 5
-    timeout: 60
+    exclude: "{{ update.exclude|join(',') }}"
 
 - name: install epel-release
   yum:

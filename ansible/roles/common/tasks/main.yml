@@ -2,8 +2,17 @@
 - name: update systems  
   import_tasks: update.yml
 
-- name: add users 
-  import_tasks: users.yml 
+- name: Create Group
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+    state: present
+  loop: "{{ user_groups }}"
+
+- include_tasks: users.yml
+  loop: "{{ user_users }}"
+  loop_control:
+    loop_var: user
 
 - name: common system tasks / preperation 
   import_tasks: common.yml 

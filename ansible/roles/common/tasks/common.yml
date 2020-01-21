@@ -1,7 +1,8 @@
-- name: Install dependencies
+---
+- name: Ensure packages exists
   yum:
-    name: "{{ basepackages }}"
-    state: "{{ state }}"
+    name: "{{ update_packages }}"
+    state: present
 
 - sysctl:
     name: vm.max_map_count
