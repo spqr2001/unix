@@ -7,27 +7,18 @@
     group: root
     mode: 0755
   with_items:
-    - Dockerfile
-    - docker-entrypoint.sh
+    - Dockerfile.j2
+    - docker-entrypoint.sh.j2
 
 - name: build wildfly container
   docker_image:
     build:
-      path: "{{ wildfly_dir }}"
+      path: "{{ wildfly_dockerfile }}"
     tag: "{{ wildfly_version }}"
     pull: true
     source: build
     name: "{{ wildfly_container_location }}"
 
-
-- name: Build an image and push it to a private repo
-  docker_image:
-    build:
-      path: ./sinatra
-    name: registry.ansible.com/chouseknecht/sinatra
-    tag: v1
-    push: yes
-    source: build
 
 - name: running wildfly container
   docker_container:

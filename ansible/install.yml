@@ -3,7 +3,7 @@
   become: true
   roles:
     - common 
-      #    - install
+    - install
   vars: 
     state: present 
     mode: restarted
