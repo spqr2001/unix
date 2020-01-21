@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   roles:
-    - common 
+          #    - common 
     - install
   vars: 
     state: present 
