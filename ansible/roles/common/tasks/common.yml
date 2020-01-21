@@ -1,9 +1,14 @@
 ---
+
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: latest
+
 - name: Ensure packages exists
   yum:
     name: "{{ update_packages }}"
     state: present
-
 
 - name: install pip ssl dependencies 
   pip:
