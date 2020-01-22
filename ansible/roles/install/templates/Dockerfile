@@ -1,4 +1,4 @@
-FROM {{ wildfly_container_location }} 
+FROM {{ wildfly_source }} 
 
 ADD war/helloworld.war /opt/jboss/wildfly/standalone/deployments/
 

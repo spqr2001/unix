@@ -13,9 +13,9 @@
 - name: build wildfly container
   docker_image:
     build:
-      path: "{{ wildfly_dockerfile }}"
+      path: "{{ wildfly_dir }}"
     tag: "{{ wildfly_version }}"
-    #pull: true
+    pull: yes
     source: build
     name: "{{ wildfly_container_name }}"
 
@@ -23,7 +23,7 @@
 - name: running wildfly container
   docker_container:
     name: "{{ wildfly_container_name }}"
-    image: "{{ wildfly_container_name }}:{{ wildfly_version }}"
+    image: "{{ wildfly_container }}"
     state: started
     hostname: "{{ ansible_ssh_host }}"
     log_driver: journald

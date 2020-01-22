@@ -15,6 +15,9 @@ update_packages:
   - bash-completion
   - mc
   - python-pip
+  - python-docker-py 
+  - htop 
+  - nload 
 
 docker_user: root
 docker_dir: /opt/docker
@@ -39,8 +42,7 @@ groups_as_list:
 ###########
 # WILDFLY #
 ###########
-wildfly_dir: /etc/wildfly
-wildfly_dockerfile: /etc/wildfly/Dockerfile
+wildfly_dir: /etc/wildfly/
 wildfly_conf: /etc/wildfly/conf
 wildfly_certs: /etc/wildfly/certs
 wildfly_war: /etc/wildfly/war
@@ -60,7 +62,8 @@ wildfly_pass: E13itbv++
 wildfly_version: v0.2
 wildfly_container_name: wildflyruv
 wildfly_container_version: latest 
-wildfly_container_location: jboss/wildfly:latest
+wildfly_container: wildflyruv:latest
+wildfly_source: jboss/wildfly
 
 ########
 # USER #
