@@ -19,7 +19,7 @@
 
 - name: copy war files
   copy:
-    src: hello-world.war
+    src: helloworld.war
     dest: "{{ wildfly_war }}"
     mode: 0644
     owner: root
