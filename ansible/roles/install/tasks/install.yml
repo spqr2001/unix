@@ -23,7 +23,7 @@
 - name: running wildfly container
   docker_container:
     name: "{{ wildfly_container_name }}"
-    image: "{{ wildfly_container }}"
+    image: "{{ wildfly_container_name }}:{{ wildfly_version }}" 
     state: started
     hostname: "{{ ansible_ssh_host }}"
     log_driver: journald
@@ -35,9 +35,6 @@
     env:
       PROXY_ADDRESS_FORWARDING: "true"
       HOST_ADDR: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-    args: 
-      WILDFLY_NAME: "{{ wildfly_name }}" 
-      CLUSTER_PW: "{{ wildfly_cluster_pw }}" 
     volumes:
       - /etc/wildfly/certs:/etc/x509/https
 

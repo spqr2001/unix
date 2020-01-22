@@ -61,8 +61,7 @@ wildfly_user: admin
 wildfly_pass: E13itbv++
 wildfly_version: v0.2
 wildfly_container_name: wildflyruv
-wildfly_container_version: latest 
-wildfly_container: wildflyruv:latest
+wildfly_container: wildflyruv:v0.2
 wildfly_source: jboss/wildfly
 
 ########
