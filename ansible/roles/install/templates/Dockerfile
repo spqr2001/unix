@@ -1,6 +1,6 @@
 FROM {{ wildfly_container_location }} 
 
-ADD helloworld.war /opt/jboss/wildfly/standalone/deployments/
+ADD war/helloworld.war /opt/jboss/wildfly/standalone/deployments/
 
 ARG {{ wildfly_name }}  
 ARG {{ wildfly_cluster_pw }}  

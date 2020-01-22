@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - punisher 
+  vars: 
+    state: present 
+    mode: restarted
