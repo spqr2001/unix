@@ -15,7 +15,7 @@
     build:
       path: "{{ wildfly_dir }}"
     tag: "{{ wildfly_version }}"
-    pull: yes
+    #build.pull: yes
     source: build
     name: "{{ wildfly_container_name }}"
 
@@ -37,4 +37,5 @@
       HOST_ADDR: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
     volumes:
       - /etc/wildfly/certs:/etc/x509/https
+      - /etc/wildfly/war:/opt/jboss/wildfly/standalone/deployments/
 

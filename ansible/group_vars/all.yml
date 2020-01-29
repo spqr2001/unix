@@ -87,5 +87,19 @@ user_users:
     authorized_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHloY/C+D1LuFwS8AtWUghCxhkmrfzdJOc2mZdMO1TQG julian.wendling@sva.de"
 
 
+  - name: sdsdfdemo
+    comment: emo User
+    uid: 3440
+    primary_group: demo
+    shell: /bin/bash
+    sudo:
+      enabled: true
+      nopasswd:
+        - /usr/bin/yum
+    exclusive: true
+    authorized_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHloY/C+D1LuFwS8AtWUghCxhkmrfzdJOc2mZdMO1TQG julian.wendling@sva.de"
+
+
+
 
 
