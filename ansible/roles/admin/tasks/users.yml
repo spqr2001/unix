@@ -1,0 +1,27 @@
+---
+- name: Create User {{ user.name }}
+  user:
+    name: "{{ user.name }}"
+    comment: "{{ user.comment }}"
+    uid: "{{ user.uid }}"
+    group: "{{ user.primary_group }}"
+    shell: "{{ user.shell }}"
+    state: present
+
+- name: Deploy passwd Keys for {{ user.name }}
+  when: user.authorized_key is defined and user.authorized_key != ''
+  authorized_key:
+    user: "{{ user.name }}"
+    state: present
+    exclusive: "{{ user.exclusive }}"
+    key: "{{ user.authorized_key }}"
+
+- name: Create sudofile for {{ user.name }}
+  when: user.sudo.enabled|bool
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/{{ user.name }}"
+    validate: 'visudo -cf %s'
+    mode: 0440
+
+

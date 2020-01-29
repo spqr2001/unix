@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - admin
+  vars: 
+    state: present 
+    mode: restarted

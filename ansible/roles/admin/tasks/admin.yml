@@ -1,0 +1,45 @@
+---
+- name: Update to latest
+  when: update.enabled|bool
+  yum:
+    name: '*'
+    state: latest
+    exclude: "{{ update.exclude|join(',') }}"
+
+- name: copy war files
+  copy:
+    src: helloworld.war
+    dest: "{{ wildfly_war }}"
+    mode: 0644
+    owner: root
+    directory_mode: yes
+
+- name: copy conf files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ wildfly_dir }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - start.sh
+
+- name: running wildfly container
+  docker_container:
+    name: "{{ wildfly_container_name }}"
+    image: "{{ wildfly_container_name }}:{{ wildfly_version }}"
+    state: started
+    restart: yes
+    hostname: "{{ ansible_ssh_host }}"
+    log_driver: journald
+    recreate: yes
+    restart_policy: unless-stopped
+    ports:
+      - 8080:8080
+      - 9990:9990
+    env:
+      PROXY_ADDRESS_FORWARDING: "true"
+      HOST_ADDR: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    volumes:
+      - /etc/wildfly/certs:/etc/x509/https
+      - /etc/wildfly/war:/opt/jboss/wildfly/standalone/deployments/
